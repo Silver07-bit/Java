@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class CompositeMagicNumber
+{
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter n: ");
+        int n = in.nextInt();
+
+        System.out.print("Enter n: ");
+        int num = in.nextInt();
+
+        if (n< 1 || num < 1 || n > num) {
+            System.out.println("Invalid input");
+            return;
+        }
+
+        System.out.println("The composite magic numbers are:");
+        int count = 0;
+        for (int i = n; i <= num; i++) {
+
+            boolean isComposite = false;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isComposite = true;
+                    break;
+                }
+            }
+
+            if (isComposite && i != 1) {
+                int x = i;
+                while (x > 9) {
+                    int x = 0;
+                    while (x != 0) {
+                        int d = x % 10;
+                        x /= 10;
+                        sum += d;
+                    }
+                    x=sum;
+                }
+
+                if (x == 1) {
+                    count++;
+                    System.out.print(i + " ");
+                }
+            }
+        }
+        System.out.println();
+        System.out.println("Frequency of composite magic numbers: " + count);
+    }
+}
